@@ -14,7 +14,8 @@ public class TaskHeapArrayList {
 	 * Konstruktor
 	 */
 	public TaskHeapArrayList() {
-
+		this.tasks = new ArrayList<>();
+		tasks.add(null); // Dummy Element, damit Operationen bei 1 beginnen können
 	}
 
 	/**
@@ -23,6 +24,13 @@ public class TaskHeapArrayList {
 	 */
 	public void insert(Task t) {
 		// TODO: Your implementation
+		if (t == null){
+			return;
+		}
+
+
+		tasks.add(t);
+		swim(tasks.size()-1);
 	}
 
 	/**
@@ -31,15 +39,48 @@ public class TaskHeapArrayList {
 	 */
 	public Task remove() {
 		// TODO: Your implementation
-		return null;
+
+		if (tasks.size() == 1){
+			return null;
+		}
+
+        exchange(1, tasks.size()-1);
+        int pos = tasks.size()-1;
+        Task toRemove = tasks.get(pos);
+        tasks.remove(toRemove);
+        sink(1);
+        return toRemove;
 	}
 
 	private void swim(int pos) {
 		// TODO: Your implementation of swim
+		Task current = tasks.get(pos);
+
+		if (pos==1){
+			return;
+		}
+
+		while(prio(pos)<prio(parent(pos))){
+			exchange(pos, parent(pos));
+			pos = parent(pos);
+			if (pos == 1){
+				return;
+			}
+		}
+
 	}
 
 	private void sink(int pos) {
 		// TODO: Your implementation of sink
+		while (hasChildren(pos)){
+			int minchild=minChild(pos);
+			if (prio(pos)>prio(minchild)) {
+				exchange(pos, minchild);
+				pos = minchild;
+			} else {
+				return;
+			}
+		}
 	}
 
 	private int parent(int pos) {
