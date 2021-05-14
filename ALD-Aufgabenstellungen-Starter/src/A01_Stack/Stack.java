@@ -10,8 +10,12 @@ public class Stack<T>
      * @throws StackEmptyException 
      */
     public T pop() throws StackEmptyException {
-
-    	return null;
+        if (first == null){
+            throw new StackEmptyException();
+        }
+        T payload = first.getData();
+        first = first.getNext();
+        return payload;
     }
     
     /**
@@ -20,6 +24,15 @@ public class Stack<T>
      */
     public void push(T i) {
 
+        Node<T> toAdd = new Node<>(i);
+
+        if (first == null){
+           first = toAdd;
+           return;
+        }
+
+        toAdd.setNext(first);
+        first = toAdd;
     }
     
     /**
@@ -27,6 +40,18 @@ public class Stack<T>
      * @return
      */
     public int getCount() {
-    	return 0;
+
+        int counter = 0;
+
+        if (first == null){
+            return counter;
+        }
+        counter++;
+        Node<T> current = first;
+        while(current.getNext() != null){
+            counter++;
+            current = current.getNext();
+        }
+        return counter;
     }
 }
