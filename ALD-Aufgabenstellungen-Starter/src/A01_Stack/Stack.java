@@ -14,7 +14,10 @@ public class Stack<T>
             throw new StackEmptyException();
         }
         T payload = first.getData();
+        Node<T> temp = first;
         first = first.getNext();
+        temp.setNext(null);
+        temp = null;
         return payload;
     }
     
