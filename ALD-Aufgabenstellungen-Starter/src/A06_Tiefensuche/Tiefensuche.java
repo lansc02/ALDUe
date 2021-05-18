@@ -47,31 +47,25 @@ public class Tiefensuche extends BaseTree<Film> {
 
 		Node<Film> current = getRoot();
 
-
-		while (true) {
-			stack.push(current);
-			if (current.getValue().getLänge() < max && current.getValue().getLänge() > min) {
-				result.add(current.getValue().getTitel());
-			}
-			if (current.getLeft() == null) {
-				break;
-			}
-			current = current.getLeft();
-
-		}
+		stack.push(current);
 		while (stack.getCount() > 0) {
 			try {
 				current = stack.pop();
 			} catch (StackEmptyException e) {
 				e.printStackTrace();
 			}
-			if (current.getRight() != null &&
-				min < current.getRight().getValue().getLänge() &&
-				current.getRight().getValue().getLänge() < max) {
-				result.add(current.getRight().getValue().getTitel());
+
+			if (min < current.getValue().getLänge() && current.getValue().getLänge() < max) {
+				result.add(current.getValue().getTitel());
+			}
+
+			if (current.getRight() != null) {
+				stack.push(current.getRight());
+			}
+			if (current.getLeft() != null) {
+				stack.push(current.getLeft());
 			}
 		}
-
 
 		return result;
 	}
