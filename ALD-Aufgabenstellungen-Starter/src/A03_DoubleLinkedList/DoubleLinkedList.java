@@ -149,6 +149,9 @@ public class DoubleLinkedList<T> {
         while ((true)) {
             if (counter == pos) {
                 return current.getData();
+            } if (current.getNext() == null){
+                System.out.println("Am Ende angelangt, pos nicht in Liste enthalten");
+                return null;
             }
             moveNext();
         }

@@ -32,9 +32,9 @@ public class Woerterbuch {
 
 		Wort start = find(w.getWort());
 		int sum = 1;
-		if (start.getRight() == null && start.getLeft() == null){
-			return sum;
-		}
+//		if (start.getRight() == null && start.getLeft() == null){
+//			return sum;
+//		}
 		if (start.getLeft() != null){
 			sum += countWordsInSubTree(start.getLeft());
 		}

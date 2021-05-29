@@ -59,10 +59,12 @@ public class Tiefensuche extends BaseTree<Film> {
 				result.add(current.getValue().getTitel());
 			}
 
-			if (current.getRight() != null) {
+			if (current.getRight() != null) { // man könnte hier auch mit der Schrank vergleichen um die Laufzeit zu
+				// optimieren
 				stack.push(current.getRight());
 			}
-			if (current.getLeft() != null) {
+			if (current.getLeft() != null) { // man könnte hier auch mit der Schrank vergleichen um die Laufzeit zu
+				// optimieren
 				stack.push(current.getLeft());
 			}
 		}
