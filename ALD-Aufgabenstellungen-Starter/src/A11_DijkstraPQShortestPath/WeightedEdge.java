@@ -1,6 +1,6 @@
 package A11_DijkstraPQShortestPath;
 
-public class WeightedEdge {
+public class WeightedEdge implements Comparable<WeightedEdge>{
 	public int from_vertex;
 	public int to_vertex;
 	public int weight;
@@ -10,5 +10,11 @@ public class WeightedEdge {
 		this.to_vertex = to_vertex;
 		this.weight = weight;
 	}
-	
+
+
+
+	@Override
+	public int compareTo(WeightedEdge weightedEdge) {
+		return Integer.compare(this.weight, weightedEdge.weight);
+	}
 }
