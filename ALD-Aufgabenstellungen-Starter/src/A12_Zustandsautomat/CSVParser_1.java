@@ -62,6 +62,8 @@ public class CSVParser_1 {
 
 					}
 					break;
+				case 5: //quoted text
+					break;
 				case 99: //Error
 					return res;
 				default :
